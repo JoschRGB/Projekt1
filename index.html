@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wissenschaftlicher Taschenrechner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <div class="display">
+                <div class="display-history" id="history"></div>
+                <div class="display-result" id="result">0</div>
+            </div>
+
+            <div class="buttons">
+                <!-- Wissenschaftliche Funktionen - Reihe 1 -->
+                <button class="btn function" onclick="calculator.clear()">C</button>
+                <button class="btn function" onclick="calculator.deleteLast()">⌫</button>
+                <button class="btn function" onclick="calculator.appendOperator('^')">x^y</button>
+                <button class="btn operator" onclick="calculator.appendOperator('/')">÷</button>
+
+                <!-- Wissenschaftliche Funktionen - Reihe 2 -->
+                <button class="btn function" onclick="calculator.calculateFunction('sin')">sin</button>
+                <button class="btn function" onclick="calculator.calculateFunction('cos')">cos</button>
+                <button class="btn function" onclick="calculator.calculateFunction('tan')">tan</button>
+                <button class="btn operator" onclick="calculator.appendOperator('*')">×</button>
+
+                <!-- Wissenschaftliche Funktionen - Reihe 3 -->
+                <button class="btn function" onclick="calculator.calculateFunction('sqrt')">√</button>
+                <button class="btn function" onclick="calculator.calculateFunction('log')">log</button>
+                <button class="btn function" onclick="calculator.calculateFunction('ln')">ln</button>
+                <button class="btn operator" onclick="calculator.appendOperator('-')">−</button>
+
+                <!-- Zahlen - Reihe 4 -->
+                <button class="btn number" onclick="calculator.appendNumber('7')">7</button>
+                <button class="btn number" onclick="calculator.appendNumber('8')">8</button>
+                <button class="btn number" onclick="calculator.appendNumber('9')">9</button>
+                <button class="btn operator" onclick="calculator.appendOperator('+')">+</button>
+
+                <!-- Zahlen - Reihe 5 -->
+                <button class="btn number" onclick="calculator.appendNumber('4')">4</button>
+                <button class="btn number" onclick="calculator.appendNumber('5')">5</button>
+                <button class="btn number" onclick="calculator.appendNumber('6')">6</button>
+                <button class="btn function" onclick="calculator.insertPi()">π</button>
+
+                <!-- Zahlen - Reihe 6 -->
+                <button class="btn number" onclick="calculator.appendNumber('1')">1</button>
+                <button class="btn number" onclick="calculator.appendNumber('2')">2</button>
+                <button class="btn number" onclick="calculator.appendNumber('3')">3</button>
+                <button class="btn function" onclick="calculator.insertE()">e</button>
+
+                <!-- Zahlen - Reihe 7 -->
+                <button class="btn number" onclick="calculator.appendNumber('0')">0</button>
+                <button class="btn number" onclick="calculator.appendNumber('.')">.</button>
+                <button class="btn function" onclick="calculator.toggleSign()">+/−</button>
+                <button class="btn equals" onclick="calculator.calculate()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
