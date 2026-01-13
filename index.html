@@ -3,59 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wissenschaftlicher Taschenrechner</title>
+    <title>Premium Wissenschaftlicher Taschenrechner</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" onclick="calculator.toggleTheme()">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+    </button>
+
     <div class="calculator-container">
         <div class="calculator">
+            <!-- Header -->
+            <div class="calculator-header">
+                <h2 class="calculator-title">Scientific Calculator</h2>
+                <div class="memory-indicator" id="memoryIndicator">M</div>
+            </div>
+
+            <!-- Display -->
             <div class="display">
+                <div class="display-memory" id="memoryDisplay"></div>
                 <div class="display-history" id="history"></div>
                 <div class="display-result" id="result">0</div>
             </div>
 
-            <div class="buttons">
-                <!-- Wissenschaftliche Funktionen - Reihe 1 -->
-                <button class="btn function" onclick="calculator.clear()">C</button>
-                <button class="btn function" onclick="calculator.deleteLast()">⌫</button>
-                <button class="btn function" onclick="calculator.appendOperator('^')">x^y</button>
-                <button class="btn operator" onclick="calculator.appendOperator('/')">÷</button>
+            <!-- Mode Toggle -->
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="basicMode" onclick="calculator.setMode('basic')">Basic</button>
+                <button class="mode-btn" id="advancedMode" onclick="calculator.setMode('advanced')">Advanced</button>
+            </div>
 
-                <!-- Wissenschaftliche Funktionen - Reihe 2 -->
-                <button class="btn function" onclick="calculator.calculateFunction('sin')">sin</button>
-                <button class="btn function" onclick="calculator.calculateFunction('cos')">cos</button>
-                <button class="btn function" onclick="calculator.calculateFunction('tan')">tan</button>
-                <button class="btn operator" onclick="calculator.appendOperator('*')">×</button>
+            <!-- Buttons Container -->
+            <div class="buttons" id="buttonsContainer">
+                <!-- Basic Mode Buttons -->
+                <div class="button-grid basic-grid" id="basicGrid">
+                    <!-- Memory Functions -->
+                    <button class="btn memory" onclick="calculator.memoryClear()">MC</button>
+                    <button class="btn memory" onclick="calculator.memoryRecall()">MR</button>
+                    <button class="btn memory" onclick="calculator.memoryAdd()">M+</button>
+                    <button class="btn memory" onclick="calculator.memorySubtract()">M−</button>
 
-                <!-- Wissenschaftliche Funktionen - Reihe 3 -->
-                <button class="btn function" onclick="calculator.calculateFunction('sqrt')">√</button>
-                <button class="btn function" onclick="calculator.calculateFunction('log')">log</button>
-                <button class="btn function" onclick="calculator.calculateFunction('ln')">ln</button>
-                <button class="btn operator" onclick="calculator.appendOperator('-')">−</button>
+                    <!-- Row 1 -->
+                    <button class="btn function" onclick="calculator.clear()">AC</button>
+                    <button class="btn function" onclick="calculator.deleteLast()">⌫</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('percent')">%</button>
+                    <button class="btn operator" onclick="calculator.appendOperator('/')">÷</button>
 
-                <!-- Zahlen - Reihe 4 -->
-                <button class="btn number" onclick="calculator.appendNumber('7')">7</button>
-                <button class="btn number" onclick="calculator.appendNumber('8')">8</button>
-                <button class="btn number" onclick="calculator.appendNumber('9')">9</button>
-                <button class="btn operator" onclick="calculator.appendOperator('+')">+</button>
+                    <!-- Row 2 -->
+                    <button class="btn number" onclick="calculator.appendNumber('7')">7</button>
+                    <button class="btn number" onclick="calculator.appendNumber('8')">8</button>
+                    <button class="btn number" onclick="calculator.appendNumber('9')">9</button>
+                    <button class="btn operator" onclick="calculator.appendOperator('*')">×</button>
 
-                <!-- Zahlen - Reihe 5 -->
-                <button class="btn number" onclick="calculator.appendNumber('4')">4</button>
-                <button class="btn number" onclick="calculator.appendNumber('5')">5</button>
-                <button class="btn number" onclick="calculator.appendNumber('6')">6</button>
-                <button class="btn function" onclick="calculator.insertPi()">π</button>
+                    <!-- Row 3 -->
+                    <button class="btn number" onclick="calculator.appendNumber('4')">4</button>
+                    <button class="btn number" onclick="calculator.appendNumber('5')">5</button>
+                    <button class="btn number" onclick="calculator.appendNumber('6')">6</button>
+                    <button class="btn operator" onclick="calculator.appendOperator('-')">−</button>
 
-                <!-- Zahlen - Reihe 6 -->
-                <button class="btn number" onclick="calculator.appendNumber('1')">1</button>
-                <button class="btn number" onclick="calculator.appendNumber('2')">2</button>
-                <button class="btn number" onclick="calculator.appendNumber('3')">3</button>
-                <button class="btn function" onclick="calculator.insertE()">e</button>
+                    <!-- Row 4 -->
+                    <button class="btn number" onclick="calculator.appendNumber('1')">1</button>
+                    <button class="btn number" onclick="calculator.appendNumber('2')">2</button>
+                    <button class="btn number" onclick="calculator.appendNumber('3')">3</button>
+                    <button class="btn operator" onclick="calculator.appendOperator('+')">+</button>
 
-                <!-- Zahlen - Reihe 7 -->
-                <button class="btn number" onclick="calculator.appendNumber('0')">0</button>
-                <button class="btn number" onclick="calculator.appendNumber('.')">.</button>
-                <button class="btn function" onclick="calculator.toggleSign()">+/−</button>
-                <button class="btn equals" onclick="calculator.calculate()">=</button>
+                    <!-- Row 5 -->
+                    <button class="btn number zero" onclick="calculator.appendNumber('0')">0</button>
+                    <button class="btn number" onclick="calculator.appendNumber('.')">.</button>
+                    <button class="btn equals" onclick="calculator.calculate()">=</button>
+                </div>
+
+                <!-- Advanced Mode Buttons -->
+                <div class="button-grid advanced-grid hidden" id="advancedGrid">
+                    <!-- Row 1 - Trigonometric -->
+                    <button class="btn function" onclick="calculator.calculateFunction('sin')">sin</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('cos')">cos</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('tan')">tan</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('asin')">sin⁻¹</button>
+
+                    <!-- Row 2 - Inverse Trig -->
+                    <button class="btn function" onclick="calculator.calculateFunction('acos')">cos⁻¹</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('atan')">tan⁻¹</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('sinh')">sinh</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('cosh')">cosh</button>
+
+                    <!-- Row 3 - Powers and Roots -->
+                    <button class="btn function" onclick="calculator.appendOperator('^')">x^y</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('square')">x²</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('cube')">x³</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('sqrt')">√x</button>
+
+                    <!-- Row 4 - Advanced Math -->
+                    <button class="btn function" onclick="calculator.calculateFunction('cbrt')">∛x</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('factorial')">x!</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('reciprocal')">1/x</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('abs')">|x|</button>
+
+                    <!-- Row 5 - Logarithms -->
+                    <button class="btn function" onclick="calculator.calculateFunction('log')">log₁₀</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('ln')">ln</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('exp')">e^x</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('pow10')">10^x</button>
+
+                    <!-- Row 6 - Constants and Misc -->
+                    <button class="btn function" onclick="calculator.insertPi()">π</button>
+                    <button class="btn function" onclick="calculator.insertE()">e</button>
+                    <button class="btn function" onclick="calculator.toggleSign()">+/−</button>
+                    <button class="btn function" onclick="calculator.calculateFunction('random')">Rand</button>
+                </div>
             </div>
         </div>
     </div>
